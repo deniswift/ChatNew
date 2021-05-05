@@ -57,22 +57,18 @@ struct FirstPage: View {
     
     var body: some View {
         
-//        VStack(spacing: 10) {
+
           VStack {
             VStack {
             Image("pic")
                 .resizable()
-//                .frame(width: 350, height: 350)
             Text("Верификация Вашего номерa телефона")
                 .font(.largeTitle)
-//                .fontWeight(.heavy)
                 .frame(width: UIScreen.main.bounds.width - 70, height: 150)
             
             Text("Пожалуйста введите Ваш номер телефона для верификации Вашего аккаунта")
                 .font(.body)
                 .foregroundColor(.gray)
-//                .padding(.top, 12)
-//                .padding()
                 .frame(width: UIScreen.main.bounds.width - 70, height: 90)
             
             HStack(spacing: 20) {
@@ -88,40 +84,24 @@ struct FirstPage: View {
                 .padding()
                 .background(Color("Color"))
                 .cornerRadius(10)
-//                .clipShape(RoundedRectangle(cornerRadius: 10))
                 .frame(width: 220, height: 25)
                
             }
-//            .frame(width: UIScreen.main.bounds.width - 70, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//            .background(Color.white)
-//            .clipShape(Rectangle())
-//            .cornerRadius(10)
-//            .shadow(color: Color.black.opacity(0.25),radius: 5, x: 5, y: 5)
-//            .shadow(color: Color.black.opacity(0.15),radius: 5, x: -5, y: -5)
-                
             .padding()
                 
             NavigationLink(
                 destination: ScndPage(show: $show, ID: $ID),
                 isActive: $show) {
-                
                 Button(action: {
-                    
-//                    PhoneAuthProvider.provider().verifyPhoneNumber("+"+"7"+self.no, uiDelegate: nil) { (ID, err) in
                     PhoneAuthProvider.provider().verifyPhoneNumber("+"+"7"+self.no, uiDelegate: nil) { (ID, err) in
-                    
                         if err != nil{
                             self.msg = (err?.localizedDescription)!
                             self.alert.toggle()
                             return
                         }
-                        
                         self.ID = ID!
                         self.show.toggle()
                     }
-                    
-//                    self.show.toggle()
-                                                    
                 }) {
                     
                     Text("Выслать")
@@ -132,14 +112,13 @@ struct FirstPage: View {
                 .cornerRadius(13)
                     
             }
-                
-           
             .navigationTitle("")
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
                 
                 
-            }.padding()
+            }
+            .padding()
             .alert(isPresented: $alert) {
                 
                 Alert(title: Text("Ошибка"), message: Text(self.msg), dismissButton: .default(Text("Ok")))
@@ -157,53 +136,31 @@ struct ScndPage: View {
     @State var alert = false
     
     var body: some View {
-        
-//        VStack(spacing: 10) {
+
         ZStack(alignment: .topLeading) {
             
             GeometryReader{_ in
-                
                 VStack {
                   VStack {
+                    
                   Image("pic")
                       .resizable()
-      //                .frame(width: 350, height: 350)
+                    
                   Text("Верификационный код")
                       .font(.largeTitle)
-      //                .fontWeight(.heavy)
                       .frame(width: UIScreen.main.bounds.width - 70, height: 90)
                   
                   Text("Пожалуйста введите присланный Вам верификационный код")
                       .font(.body)
                       .foregroundColor(.gray)
-      //                .padding(.top, 12)
-      //                .padding()
                       .frame(width: UIScreen.main.bounds.width - 70, height: 90)
                   
-      //            HStack(spacing: 20) {
                     TextField("Код", text: self.$code)
                       .keyboardType(.numberPad)
                       .frame(width: 70, height: 25)
                       .padding()
                       .background(Color("Color"))
                       .cornerRadius(10)
-                  
-      //            TextField("Номер телефона", text: $no)
-      //                .keyboardType(.numberPad)
-      //                .padding()
-      //                .background(Color("Color"))
-      //                .cornerRadius(10)
-      ////                .clipShape(RoundedRectangle(cornerRadius: 10))
-      //                .frame(width: 220, height: 25)
-      //
-      //            }
-      //            .frame(width: UIScreen.main.bounds.width - 70, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-      //            .background(Color.white)
-      //            .clipShape(Rectangle())
-      //            .cornerRadius(10)
-      //            .shadow(color: Color.black.opacity(0.25),radius: 5, x: 5, y: 5)
-      //            .shadow(color: Color.black.opacity(0.15),radius: 5, x: -5, y: -5)
-                      
                   .padding()
                   Button(action: {
                     
@@ -237,10 +194,7 @@ struct ScndPage: View {
                 
             }
                 Button(action: {
-                    
-                    self.show.toggle()
-                    
-               
+                    self.show.toggle()                    
                 }) {
                     HStack{
                     Image(systemName: "chevron.left")
